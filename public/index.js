@@ -1,10 +1,27 @@
 fetch(window.location.href + "status")
     .then((response) => response.json())
     .then((data) => {
-        console.log(data);
-        document.getElementById("number").innerHTML = data;
+        scoreTo7Segment(data[0].score).forEach((i) => document.getElementById("display-inner").appendChild(create7SegmentDigit(i)));
     })
     .catch(error => console.log(error));
+
+const scoreTo7Segment = (score) => {
+    const digitArray = [];
+    const isNegative = score < 0;
+    score = Math.abs(score);
+    while (score > 9) {
+        digitArray.unshift(score % 10);
+        score = Math.floor(score / 10);
+    }
+    digitArray.unshift(score);
+    if (isNegative) {
+        digitArray.unshift("minus");
+    }
+    while (digitArray.length < 4) {
+        digitArray.unshift("none");
+    }
+    return digitArray
+}
 
 const create7SegmentDigit = (digit) => {
     const wrapper = document.createElement("span");
@@ -28,6 +45,6 @@ const create7SegmentDigit = (digit) => {
 }
 
 
-for (let i = 0; i < 4; i++) {
-    document.getElementById("display-inner").appendChild(create7SegmentDigit("none"));
-}
+["none", "minus", 1, 7]
+
+
