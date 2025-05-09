@@ -5,33 +5,50 @@ html, body {
 
 #display {
     width: 100%;
-    height: 50%
+    height: 20%
 }
 
 .digit-wrapper {
     position: relative;
     height: 100%;
     aspect-ratio: 1/1.8;
-    border: 1px solid blue;
+    display: inline-block;
 
     div {
-        background: red;
         position: absolute;
         box-sizing: border-box;
     }
 
-    /* technically you cant just adjust everything by a flat 1% since 1% in the width is different than 1% in the height */
-    /* but it comes out close enough that i am not going to do the math to get it exact */
     .vert {
         width: 20%;
         height: calc(100% * 4/9);
-        clip-path: polygon(50% 1%, 1% 13.5%, 1% 86.5%, 50% 99%, 99% 86.5%, 99% 13.5%, 50% 1%);
+        clip-path: polygon(50% 0%, 0% 12.5%, 0% 87.5%, 50% 100%, 100% 87.5%, 100% 12.5%, 50% 0%);
+        background-color: transparent;
+
+        .inner {
+            width: 92%;
+            height: 98%;
+            top: 1%;
+            left: 4%;
+            clip-path: polygon(50% 0%, 0% 11.5%, 0% 88.5%, 50% 100%, 100% 88.5%, 100% 11.5%, 50% 0%);
+            background-color: red;
+        }
     }
 
     .horiz {
         width: 80%;
         height: calc(100% * 1/9);
-        clip-path: polygon(1% 50%, 13.5% 1%, 86.5% 1%, 99% 50%, 86.5% 99%, 13.5% 99%, 1% 50%);
+        clip-path: polygon(0% 50%, 12.5% 0%, 87.5% 0%, 100% 50%, 87.5% 100%, 12.5% 100%, 0% 50%);
+        background-color: transparent;
+
+        .inner {
+            width: 98%;
+            height: 92%;
+            top: 4%;
+            left: 1%;
+            clip-path: polygon(0% 50%, 11.5% 0%, 88.5% 0%, 100% 50%, 88.5% 100%, 11.5% 100%, 0% 50%);
+            background-color: red;
+        }
     }
 
     .top {
@@ -77,43 +94,43 @@ html, body {
 }
 
 .digit-1 {
-    .top,.top-left,.middle,.bottom-left,.bottom {
+    .top,.top-left,.middle,.bottom-left,.bottom .inner {
         visibility: hidden;
     }
 }
 
 .digit-2 {
-    .top-left,.bottom-right {
+    .top-left,.bottom-right .inner {
         visibility: hidden;
     }
 }
 
 .digit-3 {
-    .top-left,.bottom-left {
+    .top-left,.bottom-left .inner {
         visibility: hidden;
     }
 }
 
 .digit-4 {
-    .top,.bottom-left,.bottom {
+    .top,.bottom-left,.bottom .inner {
         visibility: hidden;
     }
 }
 
 .digit-5 {
-    .top-right,.bottom-left {
+    .top-right,.bottom-left .inner {
         visibility: hidden;
     }
 }
 
 .digit-6 {
-    .top-right {
+    .top-right .inner {
         visibility: hidden;
     }
 }
 
 .digit-7 {
-    .top-left,.middle,.bottom-left,.bottom {
+    .top-left,.middle,.bottom-left,.bottom .inner {
         visibility: hidden;
     }
 }
@@ -121,13 +138,13 @@ html, body {
 /* nothing for 8 since we show all segments */
 
 .digit-9 {
-    .bottom-left {
+    .bottom-left .inner {
         visibility: hidden;
     }
 }
 
 .minus {
-    .top,.top-left,.top-right,.bottom-left,.bottom-right,.bottom {
+    .top,.top-left,.top-right,.bottom-left,.bottom-right,.bottom .inner {
         visibility: hidden;
     }
 }
