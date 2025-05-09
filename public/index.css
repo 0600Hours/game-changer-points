@@ -56,6 +56,42 @@ html, body {
         width: calc(100vw * 1/9);
         height: calc(100vw * 1/9);
     }
+
+    .rect {
+        position: absolute;
+        top: 50vw;
+        height: 100vw;
+    }
+
+    #rect-0 {
+        background-color: #B72726;
+        left: 0;
+        width: 100vw;
+    }
+
+    #rect-1 {
+        left: calc(100vw * 1/9);
+        background-color: #F3BA53;
+        width: calc(100vw * 7/9);
+    }
+
+    #rect-2 {
+        left: calc(100vw * 2/9);
+        background-color: #F36D38;
+        width: calc(100vw * 5/9);
+    }
+
+    #rect-3 {
+        left: calc(100vw * 3/9);
+        background-color: #2481A0;
+        width: calc(100vw * 3/9);
+    }
+
+    #rect-4 {
+        left: calc(100vw * 4/9);
+        background-color: #771A32;
+        width: calc(100vw * 1/9);
+    }
 }
 
 #display {
