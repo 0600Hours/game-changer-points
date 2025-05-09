@@ -20,6 +20,8 @@ html, body {
         box-sizing: border-box;
     }
 
+    /* technically you cant just adjust everything by a flat 1% since 1% in the width is different than 1% in the height */
+    /* but it comes out close enough that i am not going to do the math to get it exact */
     .vert {
         width: 20%;
         height: calc(100% * 4/9);
