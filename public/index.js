@@ -27,7 +27,7 @@ const create7SegmentDigit = (digit) => {
     return wrapper;
 }
 
-document.getElementById("display").appendChild(create7SegmentDigit("minus"));
-for (var i = 0; i <= 9; i++) {
-    document.getElementById("display").appendChild(create7SegmentDigit(i));
+
+for (let i = 0; i < 4; i++) {
+    document.getElementById("display-inner").appendChild(create7SegmentDigit("none"));
 }
