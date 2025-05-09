@@ -1,0 +1,69 @@
+html, body {
+    width: 100%;
+    height: 100%;
+}
+
+#display {
+    width: 100%;
+    height: 50%
+}
+
+.digit-wrapper {
+    position: relative;
+    height: 100%;
+    aspect-ratio: 1/1.8;
+    border: 1px solid blue;
+
+    div {
+        background: red;
+        position: absolute;
+        box-sizing: border-box;
+    }
+
+    .vert {
+        width: 20%;
+        height: calc(100% * 4/9);
+        clip-path: polygon(50% 1%, 1% 13.5%, 1% 86.5%, 50% 99%, 99% 86.5%, 99% 13.5%, 50% 1%);
+    }
+
+    .horiz {
+        width: 80%;
+        height: calc(100% * 1/9);
+        clip-path: polygon(1% 50%, 13.5% 1%, 86.5% 1%, 99% 50%, 86.5% 99%, 13.5% 99%, 1% 50%);
+    }
+
+    .top {
+        top: 0;
+        left: 10%;
+    }
+
+    .top-left {
+        top: calc(100% * 1/18);
+        left: 0;
+    }
+
+    .top-right {
+        top: calc(100% * 1/18);
+        right: 0;
+    }
+
+    .middle {
+        top: calc(100% * 4/9);
+        left: 10%;
+    }
+
+    .bottom-left {
+        top: 50%;
+        left: 0;
+    }
+
+    .bottom-right {
+        top: 50%;
+        right: 0;
+    }
+
+    .bottom {
+        bottom: 0;
+        left: 10%;
+    }
+}

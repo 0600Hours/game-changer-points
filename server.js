@@ -9,19 +9,22 @@ db.serialize(() => {
     db.run("CREATE TABLE IF NOT EXISTS points (id INTEGER PRIMARY KEY AUTOINCREMENT, contestant TEXT NOT NULL, score INTEGER NOT NULL);")
 });
 
-app.get("/", (req, res) => {
+app.get("/", (_req, res) => {
     res.sendFile(path.join(__dirname, "/public/index.html"));
 });
-app.get("/status", (req, res) => {
+app.get("/status", (_req, res) => {
     db.all("SELECT * FROM points", (err, rows) => {
         console.log(rows);
         res.send(JSON.stringify(rows));
     });
 
 })
-app.get('/index.js', function(req, res){
+app.get('/index.js', function(_req, res){
     res.sendFile(path.join(__dirname, "/public/index.js"                                                                                                                                                                                                                                                                                                                                                                     ));
-  });
+});
+app.get('/index.css', function(_req, res){
+    res.sendFile(path.join(__dirname, "/public/index.css"                                                                                                                                                                                                                                                                                                                                                                     ));
+});
 app.listen(8080, () => {
-    console.log("Server is running on localhost:8080");
+    console.log("Server is running on http://localhost:8080");
 });
