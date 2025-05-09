@@ -67,3 +67,65 @@ html, body {
         left: 10%;
     }
 }
+
+.digit-0 {
+    .middle {
+        visibility: hidden;
+    }
+}
+
+.digit-1 {
+    .top,.top-left,.middle,.bottom-left,.bottom {
+        visibility: hidden;
+    }
+}
+
+.digit-2 {
+    .top-left,.bottom-right {
+        visibility: hidden;
+    }
+}
+
+.digit-3 {
+    .top-left,.bottom-left {
+        visibility: hidden;
+    }
+}
+
+.digit-4 {
+    .top,.bottom-left,.bottom {
+        visibility: hidden;
+    }
+}
+
+.digit-5 {
+    .top-right,.bottom-left {
+        visibility: hidden;
+    }
+}
+
+.digit-6 {
+    .top-right {
+        visibility: hidden;
+    }
+}
+
+.digit-7 {
+    .top-left,.middle,.bottom-left,.bottom {
+        visibility: hidden;
+    }
+}
+
+/* nothing for 8 since we show all segments */
+
+.digit-9 {
+    .bottom-left {
+        visibility: hidden;
+    }
+}
+
+.minus {
+    .top,.top-left,.top-right,.bottom-left,.bottom-right,.bottom {
+        visibility: hidden;
+    }
+}
