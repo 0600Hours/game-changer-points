@@ -2,12 +2,68 @@ html, body {
     width: 100%;
     height: 100%;
     margin: 0;
+    background: black;
+}
+
+#background {
+    width: 100%;
+    height: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    .circle {
+        border-radius: 50%;
+        position: absolute;
+    }
+
+    #circle-0 {
+        top: 0;
+        left: 0;
+        background-color: #B72726;
+        width: 100vw;
+        height: 100vw;
+    }
+
+    #circle-1 {
+        top: calc(100vw * 1/9);
+        left: calc(100vw * 1/9);
+        background-color: #F3BA53;
+        width: calc(100vw * 7/9);
+        height: calc(100vw * 7/9);
+    }
+
+    #circle-2 {
+        top: calc(100vw * 2/9);
+        left: calc(100vw * 2/9);
+        background-color: #F36D38;
+        width: calc(100vw * 5/9);
+        height: calc(100vw * 5/9);
+    }
+
+    #circle-3 {
+        top: calc(100vw * 3/9);
+        left: calc(100vw * 3/9);
+        background-color: #2481A0;
+        width: calc(100vw * 3/9);
+        height: calc(100vw * 3/9);
+    }
+
+    #circle-4 {
+        top: calc(100vw * 4/9);
+        left: calc(100vw * 4/9);
+        background-color: #771A32;
+        width: calc(100vw * 1/9);
+        height: calc(100vw * 1/9);
+    }
+}
 
 #display {
-    height: 20%;
+    height: 50%;
     width: fit-content;
     background: #D9AE7C;
-    padding: 40px 40px 80px 40px;
+    padding: 30px 30px 70px 30px;
+    z-index: 1;
     
     #display-inner {
         height: 100%;
