@@ -64,11 +64,8 @@ const create7SegmentDigit = (digit) => {
 fetch(window.location.origin + "/status")
     .then((response) => response.json())
     .then((data) => {
-        console.log(data);
         const user = window.location.pathname.substring(1, window.location.pathname.indexOf("."));
-        console.log(user);
         const userScore = data.find((row) => row.contestant === user);
-        console.log(userScore);
         scoreTo7Segment(userScore?.score).forEach((i) => document.getElementById("display-inner").appendChild(create7SegmentDigit(i)));
     })
     .catch(error => console.log(error));
