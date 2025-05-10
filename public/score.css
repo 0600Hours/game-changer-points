@@ -1,0 +1,276 @@
+html, body {
+    width: 100%;
+    height: 100%;
+    margin: 0;
+    background: black;
+}
+
+#background {
+    width: 100%;
+    height: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    .circle {
+        border-radius: 50%;
+        position: absolute;
+    }
+
+    #circle-0 {
+        top: 0;
+        left: 0;
+        background-color: #B72726;
+        width: 100vw;
+        height: 100vw;
+    }
+
+    #circle-1 {
+        top: calc(100vw * 1/9);
+        left: calc(100vw * 1/9);
+        background-color: #F3BA53;
+        width: calc(100vw * 7/9);
+        height: calc(100vw * 7/9);
+    }
+
+    #circle-2 {
+        top: calc(100vw * 2/9);
+        left: calc(100vw * 2/9);
+        background-color: #F36D38;
+        width: calc(100vw * 5/9);
+        height: calc(100vw * 5/9);
+    }
+
+    #circle-3 {
+        top: calc(100vw * 3/9);
+        left: calc(100vw * 3/9);
+        background-color: #2481A0;
+        width: calc(100vw * 3/9);
+        height: calc(100vw * 3/9);
+    }
+
+    #circle-4 {
+        top: calc(100vw * 4/9);
+        left: calc(100vw * 4/9);
+        background-color: #771A32;
+        width: calc(100vw * 1/9);
+        height: calc(100vw * 1/9);
+    }
+
+    .rect {
+        position: absolute;
+        top: 50vw;
+        height: 100vw;
+    }
+
+    #rect-0 {
+        background-color: #B72726;
+        left: 0;
+        width: 100vw;
+    }
+
+    #rect-1 {
+        left: calc(100vw * 1/9);
+        background-color: #F3BA53;
+        width: calc(100vw * 7/9);
+    }
+
+    #rect-2 {
+        left: calc(100vw * 2/9);
+        background-color: #F36D38;
+        width: calc(100vw * 5/9);
+    }
+
+    #rect-3 {
+        left: calc(100vw * 3/9);
+        background-color: #2481A0;
+        width: calc(100vw * 3/9);
+    }
+
+    #rect-4 {
+        left: calc(100vw * 4/9);
+        background-color: #771A32;
+        width: calc(100vw * 1/9);
+    }
+}
+
+#display {
+    height: 50%;
+    width: fit-content;
+    background: #D9AE7C;
+    padding: 30px 30px 70px 30px;
+    z-index: 1;
+    
+    #display-inner {
+        height: 100%;
+        padding: 20px;
+        background: black;
+        border-radius: 20px;
+    }
+}
+
+.digit-wrapper {
+    position: relative;
+    height: 100%;
+    aspect-ratio: 1/1.8;
+    display: inline-block;
+    margin: 0 7px;
+
+    div {
+        position: absolute;
+        box-sizing: border-box;
+    }
+
+    .vert {
+        width: 20%;
+        height: calc(100% * 4/9);
+
+        .inner {
+            width: 92%;
+            height: 98%;
+            top: 1%;
+            left: 4%;
+            clip-path: polygon(50% 0%, 0% 11.5%, 0% 88.5%, 50% 100%, 100% 88.5%, 100% 11.5%, 50% 0%);
+            background-color: red;
+        }
+    }
+
+    .horiz {
+        width: 80%;
+        height: calc(100% * 1/9);
+
+        .inner {
+            width: 98%;
+            height: 92%;
+            top: 4%;
+            left: 1%;
+            clip-path: polygon(0% 50%, 11.5% 0%, 88.5% 0%, 100% 50%, 88.5% 100%, 11.5% 100%, 0% 50%);
+            background-color: red;
+        }
+    }
+
+    .top {
+        top: 0;
+        left: 10%;
+    }
+
+    .top-left {
+        top: calc(100% * 1/18);
+        left: 0;
+    }
+
+    .top-right {
+        top: calc(100% * 1/18);
+        right: 0;
+    }
+
+    .middle {
+        top: calc(100% * 4/9);
+        left: 10%;
+    }
+
+    .bottom-left {
+        top: 50%;
+        left: 0;
+    }
+
+    .bottom-right {
+        top: 50%;
+        right: 0;
+    }
+
+    .bottom {
+        bottom: 0;
+        left: 10%;
+    }
+}
+
+.digit-0 {
+    .middle {
+        .inner {
+            background: #222;
+        }
+    }
+}
+
+.digit-1 {
+    .top,.top-left,.middle,.bottom-left,.bottom {
+        .inner {
+            background: #222;
+        }
+    }
+}
+
+.digit-2 {
+    .top-left,.bottom-right {
+        .inner {
+            background: #222;
+        }
+    }
+}
+
+.digit-3 {
+    .top-left,.bottom-left {
+        .inner {
+            background: #222;
+        }
+    }
+}
+
+.digit-4 {
+    .top,.bottom-left,.bottom {
+        .inner {
+            background: #222;
+        }
+    }
+}
+
+.digit-5 {
+    .top-right,.bottom-left {
+        .inner {
+            background: #222;
+        }
+    }
+}
+
+.digit-6 {
+    .top-right {
+        .inner {
+            background: #222;
+        }
+    }
+}
+
+.digit-7 {
+    .top-left,.middle,.bottom-left,.bottom {
+        .inner {
+            background: #222;
+        }
+    }
+}
+
+/* nothing for 8 since we show all segments */
+
+.digit-9 {
+    .bottom-left {
+        .inner {
+            background: #222;
+        }
+    }
+}
+
+.minus {
+    .top,.top-left,.top-right,.bottom-left,.bottom-right,.bottom {
+        .inner {
+            background: #222;
+        }
+    }
+}
+
+.none {
+    .top,.top-left,.top-right,.middle,.bottom-left,.bottom-right,.bottom {
+        .inner {
+            background: #222;
+        }
+    }
+}
