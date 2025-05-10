@@ -67,3 +67,11 @@ fetch(window.location.href + "status")
         scoreTo7Segment(data[0].score).forEach((i) => document.getElementById("display-inner").appendChild(create7SegmentDigit(i)));
     })
     .catch(error => console.log(error));
+
+document.getElementById("display").addEventListener("click", (event) => {
+    if (!document.fullscreenElement) {
+        document.querySelector("body").requestFullscreen();
+    } else {
+        document.exitFullscreen();
+    }
+});
