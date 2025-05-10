@@ -1,10 +1,3 @@
-fetch(window.location.href + "status")
-    .then((response) => response.json())
-    .then((data) => {
-        scoreTo7Segment(data[0].score).forEach((i) => document.getElementById("display-inner").appendChild(create7SegmentDigit(i)));
-    })
-    .catch(error => console.log(error));
-
 const scoreTo7Segment = (score) => {
     const digitArray = [];
     const isNegative = score < 0;
@@ -44,7 +37,33 @@ const create7SegmentDigit = (digit) => {
     return wrapper;
 }
 
+// TODO: enable wakelock once i have https figured out
 
-["none", "minus", 1, 7]
+// let wakeLock;
+// const requestWakeLock = async () => {
+//     console.log("requesting wake lock");
+//     try {
+//         wakeLock = await navigator.wakeLock.request('screen');
 
+//         alert("wakelock successful");
+//     } catch (err) {
+//         console.log(err);
+//         alert(err);
+//     }
+// }
 
+// const handleVisibilityChange = () => {
+//     if (document.visibilityState === 'visible') {
+//       requestWakeLock();
+//     }
+//   }
+
+// document.addEventListener('visibilitychange', handleVisibilityChange);
+// document.addEventListener('click', requestWakeLock);
+
+fetch(window.location.href + "status")
+    .then((response) => response.json())
+    .then((data) => {
+        scoreTo7Segment(data[0].score).forEach((i) => document.getElementById("display-inner").appendChild(create7SegmentDigit(i)));
+    })
+    .catch(error => console.log(error));

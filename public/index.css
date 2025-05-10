@@ -114,6 +114,7 @@ html, body {
     height: 100%;
     aspect-ratio: 1/1.8;
     display: inline-block;
+    margin: 0 7px;
 
     div {
         position: absolute;
