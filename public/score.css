@@ -98,7 +98,7 @@ html, body {
     height: 50%;
     width: fit-content;
     background: #D9AE7C;
-    padding: 30px 30px 70px 30px;
+    padding: 20px 20px 60px 20px;
     z-index: 1;
     
     #display-inner {
