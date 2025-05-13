@@ -1,5 +1,64 @@
-a {
-    display: block;
-    font-size: 18px;
-    margin: 20px 0;
+html, body {
+    width: 100%;
+    height: 100%;
+    margin: 0;
+}
+
+#links-container {
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+    width: 100%;
+    height: 100%;
+    background: #B72726;
+
+    .link-wrapper {
+        box-shadow: 
+            0 0 0 5px #771A32,
+            0 0 0 10px #2481A0,
+            0 0 0 15px #F36D38,
+            0 0 0 20px #F3BA53,
+            0 0 0 22.5px #B72726;
+        margin: 22.5px;
+        border-radius: 10px;
+        background: #DDD;
+
+        .link {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            text-align: center;
+            width: 100%;
+            height: 100%;
+            border-radius: 10px;
+            box-shadow:
+                0 10px 20px rgba(0, 0, 0, 0.5),
+                inset -2px -5px 3px 1px #555,
+                inset 1px 3px 3px 1px #EEE;
+            font-family: Verdana, sans-serif;
+            font-size: 30px;
+            font-weight: bolder;
+            overflow-wrap: break-word;
+            text-decoration: none;
+            color: transparent;
+            background-color: #444;
+            background-clip: text;
+            color: transparent;
+            text-shadow: 1px 2px 3px rgba(245,245,245,0.3);
+        }
+    }
+
+    @media (orientation: portrait) {
+        .link-wrapper {
+            width: calc(100% - 45px);
+            height: calc(100% * 1/6 - 45px);
+        }
+    }
+
+    @media (orientation: landscape) {
+        .link-wrapper {
+            width: calc(100% * 1/3 - 45px);
+            height: calc(50% - 45px);
+        }
+    }
 }
