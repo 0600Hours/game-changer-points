@@ -61,6 +61,16 @@ const create7SegmentDigit = (digit) => {
 // document.addEventListener('visibilitychange', handleVisibilityChange);
 // document.addEventListener('click', requestWakeLock);
 
+const requestFullscreen = () => {
+    if (!document.fullscreenElement) {
+        document.querySelector("body").requestFullscreen();
+    } else {
+        document.exitFullscreen();
+    }
+}
+
+document.getElementById("display").addEventListener("click", requestFullscreen);
+
 fetch(window.location.origin + "/status")
     .then((response) => response.json())
     .then((data) => {
@@ -69,11 +79,3 @@ fetch(window.location.origin + "/status")
         scoreTo7Segment(userScore?.score).forEach((i) => document.getElementById("display-inner").appendChild(create7SegmentDigit(i)));
     })
     .catch(error => console.log(error));
-
-document.getElementById("display").addEventListener("click", (_event) => {
-    if (!document.fullscreenElement) {
-        document.querySelector("body").requestFullscreen();
-    } else {
-        document.exitFullscreen();
-    }
-});
