@@ -3,7 +3,7 @@ const path = require('node:path');
 const app = express();
 
 const sqlite3 = require('sqlite3').verbose();
-const db = new sqlite3.Database('./points.db');
+const db = new sqlite3.Database('../shared/points.db');
 
 const USERS = ["Dax", "Latte", "RelaxingDragon", "Rory", "Takula", "Zingy"];
 

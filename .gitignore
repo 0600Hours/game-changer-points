@@ -1,5 +1,5 @@
-points.db
-points.db-journal
+shared/points.db
+shared/points.db-journal
 
 # Logs
 logs
