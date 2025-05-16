@@ -75,13 +75,9 @@ const getScore = () => {
     fetch(window.location.origin + "/status")
         .then((response) => response.json())
         .then((data) => {
-            console.log(data);
             const user = window.location.pathname.substring(1, window.location.pathname.indexOf("."));
-            console.log(user);
             const userScore = data.find((row) => row.contestant === user).score;
-            console.log(userScore);
             updateDisplay(userScore);
-            // setInterval(getScore, 250)
         })
         .catch(error => console.log(error));
 }
@@ -89,4 +85,5 @@ const getScore = () => {
 for (let i = 0; i < 4; i++) {
     document.getElementById("display-inner").appendChild(create7SegmentDigit());
 }
-getScore();
+
+setInterval(getScore, 250);
