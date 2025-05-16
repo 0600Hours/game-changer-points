@@ -7,15 +7,11 @@ const db = new sqlite3.Database('../shared/points.db');
 
 const USERS = ["Dax", "Latte", "RelaxingDragon", "Rory", "Takula", "Zingy"];
 
-db.serialize(() => {
-    db.run("CREATE TABLE IF NOT EXISTS points (id INTEGER PRIMARY KEY AUTOINCREMENT, contestant TEXT NOT NULL, score INTEGER NOT NULL);")
-});
-
 app.get("/", (_req, res) => {
     res.sendFile(path.join(__dirname, "/public/index.html"));
 });
 app.get("/status", (_req, res) => {
-    db.all("SELECT * FROM points", (err, rows) => {
+    db.all("SELECT * FROM points", (_err, rows) => {
         res.send(JSON.stringify(rows));
     });
 })
