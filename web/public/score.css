@@ -136,7 +136,7 @@ html, body {
             top: 1%;
             left: 4%;
             clip-path: polygon(50% 0%, 0% 11.5%, 0% 88.5%, 50% 100%, 100% 88.5%, 100% 11.5%, 50% 0%);
-            background-color: #D00;
+            background-color: #E00;
         }
     }
 
@@ -150,7 +150,7 @@ html, body {
             top: 4%;
             left: 1%;
             clip-path: polygon(0% 50%, 11.5% 0%, 88.5% 0%, 100% 50%, 88.5% 100%, 11.5% 100%, 0% 50%);
-            background-color: #D00;
+            background-color: #E00;
         }
     }
 
@@ -264,7 +264,7 @@ html, body {
     }
 }
 
-.minus {
+.digit-minus {
     .top,.top-left,.top-right,.bottom-left,.bottom-right,.bottom {
         .inner {
             background: #222;
@@ -272,7 +272,7 @@ html, body {
     }
 }
 
-.none {
+.digit-none {
     .top,.top-left,.top-right,.middle,.bottom-left,.bottom-right,.bottom {
         .inner {
             background: #222;

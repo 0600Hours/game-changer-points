@@ -5,7 +5,7 @@ USERS.forEach((user) => {
     linkWrapper.className = "link-wrapper";
     const link = document.createElement("a");
     link.className = "link"
-    link.href = `/${user.toLowerCase()}.html`;
+    link.href = `/${user}.html`;
 
     const capitals = user.match(/[A-Z]/g);
     if (capitals.length <= 1) {
@@ -14,15 +14,11 @@ USERS.forEach((user) => {
         let _user = user;
         let userIndex = 0, capsIndex = 0;
         while (capsIndex < capitals.length) {
-            console.log(userIndex);
-            console.log(capsIndex);
             userIndex = _user.indexOf(capitals[capsIndex], userIndex);
-            console.log(userIndex);
             if (capsIndex > 0) {
                 _user = _user.slice(0, userIndex) + '\u200B' + _user.slice(userIndex);
             }
             capsIndex++;
-            console.log("---");
         }
         link.innerHTML = _user;
     }

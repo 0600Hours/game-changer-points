@@ -28,7 +28,7 @@ app.get('/score.css', (_req, res) => {
     res.sendFile(path.join(__dirname, "/public/score.css"));
 });
 USERS.forEach((user) => {
-    app.get(`/${user.toLowerCase()}.html`, (_req, res) => {
+    app.get(`/${user}.html`, (_req, res) => {
         res.sendFile(path.join(__dirname, "/public/score.html"));
     });
 });

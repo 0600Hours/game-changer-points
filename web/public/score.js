@@ -16,7 +16,7 @@ const scoreTo7Segment = (score) => {
     return digitArray
 }
 
-const create7SegmentDigit = (digit) => {
+const create7SegmentDigit = () => {
     const wrapper = document.createElement("span");
     wrapper.className = "digit-wrapper";
     ["top horiz", "top-left vert", "top-right vert", "middle horiz", "bottom-left vert", "bottom-right vert", "bottom horiz"].forEach((e) => {
@@ -27,14 +27,14 @@ const create7SegmentDigit = (digit) => {
         segment.appendChild(inner);
         wrapper.appendChild(segment);
     });
-    if (digit !== undefined) {
-        if (typeof digit === "number") {
-            wrapper.classList.add(`digit-${digit}`);
-        } else {
-            wrapper.classList.add(digit);
-        }
-    }
     return wrapper;
+}
+
+const updateDisplay = (score) => {
+    const scoreDigits = scoreTo7Segment(score);
+    [...document.getElementsByClassName("digit-wrapper")].forEach((e, i) => {
+        e.className = `digit-wrapper digit-${scoreDigits[i]}`
+    });
 }
 
 // TODO: enable wakelock once i have https figured out
@@ -71,11 +71,22 @@ const requestFullscreen = () => {
 
 document.getElementById("display").addEventListener("click", requestFullscreen);
 
-fetch(window.location.origin + "/status")
-    .then((response) => response.json())
-    .then((data) => {
-        const user = window.location.pathname.substring(1, window.location.pathname.indexOf("."));
-        const userScore = data.find((row) => row.contestant === user);
-        scoreTo7Segment(userScore?.score).forEach((i) => document.getElementById("display-inner").appendChild(create7SegmentDigit(i)));
-    })
-    .catch(error => console.log(error));
+const getScore = () => {
+    fetch(window.location.origin + "/status")
+        .then((response) => response.json())
+        .then((data) => {
+            console.log(data);
+            const user = window.location.pathname.substring(1, window.location.pathname.indexOf("."));
+            console.log(user);
+            const userScore = data.find((row) => row.contestant === user).score;
+            console.log(userScore);
+            updateDisplay(userScore);
+            // setInterval(getScore, 250)
+        })
+        .catch(error => console.log(error));
+}
+
+for (let i = 0; i < 4; i++) {
+    document.getElementById("display-inner").appendChild(create7SegmentDigit());
+}
+getScore();
