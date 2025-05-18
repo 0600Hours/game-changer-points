@@ -1,13 +1,15 @@
 import os
 import random
 import sqlite3
+import tkinter
+from tkinter import ttk
 
 dirname = os.path.dirname(__file__)
 DB_FILE = os.path.join(dirname, "../shared/points.db")
 
 contestants = ["Dax", "Latte", "RelaxingDragon", "Rory", "Takula", "Zingy"]
 
-def main():
+def db_init():
     conn = sqlite3.connect(DB_FILE)
     db = conn.cursor()
     db.execute("CREATE TABLE IF NOT EXISTS points (contestant TEXT PRIMARY KEY, score INTEGER NOT NULL);")
@@ -19,6 +21,10 @@ def main():
     print(users.fetchall())
 
     conn.commit()
+
+def main():
+    tkinter._test()
+    
 
 if __name__ == "__main__":
     main()
