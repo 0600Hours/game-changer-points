@@ -76,7 +76,9 @@ const getScore = () => {
         .then((response) => response.json())
         .then((data) => {
             const user = window.location.pathname.substring(1, window.location.pathname.indexOf("."));
-            const userScore = data.find((row) => row.contestant === user).score;
+            console.log(data);
+            console.log(user);
+            const userScore = data.find((row) => row.contestant.toLowerCase() === user).score;
             updateDisplay(userScore);
         })
         .catch(error => console.log(error));

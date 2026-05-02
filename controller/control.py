@@ -19,6 +19,7 @@ def db_init():
     users = db.execute("SELECT * FROM points").fetchall()
 
     conn.commit()
+    conn.close()
 
     return [list(user) for user in users]
 
@@ -31,7 +32,12 @@ def subtract_point(userIndex, users, strings):
     strings[userIndex].set(users[userIndex][1])
 
 def save(users):
-    print("save")
+    conn = sqlite3.connect(DB_FILE)
+    db = conn.cursor()
+    for user in users:
+        db.execute("UPDATE points SET score = ? WHERE contestant = ?", (user[1], user[0]))
+    conn.commit()
+    conn.close()
 
 def window_init(users):
     root = Tk()
