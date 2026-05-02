@@ -32,6 +32,15 @@ USERS.forEach((user) => {
         res.sendFile(path.join(__dirname, "/public/score.html"));
     });
 });
+app.get('/sound.html', (_req, res) => {
+    res.sendFile(path.join(__dirname, "/public/sound.html"));
+});
+app.get('/sound.js', (_req, res) => {
+    res.sendFile(path.join(__dirname, "/public/sound.js"));
+});
+app.get('/point.mp3', (_req, res) => {
+    res.sendFile(path.join(__dirname, "/public/point.mp3"));
+});
 app.listen(8080, () => {
     console.log("Server is running on http://localhost:8080");
 });
