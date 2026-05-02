@@ -1,3 +1,4 @@
+from logging import root
 import os
 import random
 import sqlite3
@@ -14,40 +15,48 @@ def db_init():
     db = conn.cursor()
     db.execute("CREATE TABLE IF NOT EXISTS points (contestant TEXT PRIMARY KEY, score INTEGER NOT NULL);")
     db.executemany("INSERT OR IGNORE INTO points (contestant, score) VALUES (?, ?)", list(zip(contestants, [0] * len(contestants))))
-
-    # db.executemany("UPDATE points SET score = ? WHERE contestant = ?", list(zip(random.sample(range(-999, 9999), len(contestants)), contestants)))
     
-    users = db.execute("SELECT * FROM points")
-    print(users.fetchall())
+    users = db.execute("SELECT * FROM points").fetchall()
 
     conn.commit()
 
-def window_init():
+    return [list(user) for user in users]
+
+def add_point(userIndex, users, strings):
+    users[userIndex][1] += 1
+    strings[userIndex].set(users[userIndex][1])
+
+def subtract_point(userIndex, users, strings):
+    users[userIndex][1] -= 1
+    strings[userIndex].set(users[userIndex][1])
+
+def save(users):
+    print("save")
+
+def window_init(users):
     root = Tk()
     root.title("Game Changer - Points Controller")
 
-    frame = ttk.Frame(root, padding="10", relief="raised", borderwidth=5)
-    frame.grid(column=0, row=0, sticky=(N, E, S, W))
-    root.columnconfigure(0, weight=1)
-    root.rowconfigure(0, weight=1)
+    strings = [StringVar(value=str(user[1])) for user in users]
 
-    score_frame = ttk.Frame(frame, padding="10", relief="raised", borderwidth=5)
-    score_frame.grid(column=0, row=0, sticky=(N, E, S, W))
-    score_frame.columnconfigure(0, weight=1)
-    score_frame.rowconfigure(0, weight=1)
-    control_frame = ttk.Frame(frame, padding="10", relief="raised", borderwidth=5)
-    control_frame.grid(column=1, row=0, sticky=(N, E, S, W))
-    control_frame.columnconfigure(0, weight=1)
-    control_frame.rowconfigure(0, weight=1)
+    mainframe = ttk.Frame(root, padding=(3, 3, 3, 3))
+    mainframe.grid(column=0, row=0, sticky=(N, W, E, S))
 
-    ttk.Label(score_frame, text="scores here").grid(column=0, row=0)
-    ttk.Label(control_frame, text="controls here").grid(column=0, row=0)
+    for i in range(0, len(users)):
+        ttk.Label(mainframe, text=users[i][0]).grid(column=0, row=i)
+        ttk.Label(mainframe, textvariable=strings[i]).grid(column=1, row=i)
+        ttk.Button(mainframe, text="^", command=lambda i=i: add_point(i, users, strings)).grid(column=2, row=i)
+        ttk.Button(mainframe, text="v", command=lambda i=i: subtract_point(i, users, strings)).grid(column=3, row=i)
+
+    ttk.Button(mainframe, text="Save", command=lambda: save(users)).grid(column=0, row=len(users) + 1, columnspan=4)
 
     return root
 
 
 def main():
-    root = window_init()
+    users = db_init()
+    print(users)
+    root = window_init(users)
     root.mainloop()
 
 if __name__ == "__main__":
