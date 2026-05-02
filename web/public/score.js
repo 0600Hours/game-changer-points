@@ -95,6 +95,9 @@ document.addEventListener('visibilitychange', async () => {
 
 
 requestWakeLock();
+document.addEventListener('click', () => {
+    requestWakeLock();
+})
 
 window.addEventListener('unload', async () => {
     if (wakeLock) {
