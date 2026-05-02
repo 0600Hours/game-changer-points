@@ -37,30 +37,6 @@ const updateDisplay = (score) => {
     });
 }
 
-// TODO: enable wakelock once i have https figured out
-
-// let wakeLock;
-// const requestWakeLock = async () => {
-//     console.log("requesting wake lock");
-//     try {
-//         wakeLock = await navigator.wakeLock.request('screen');
-
-//         alert("wakelock successful");
-//     } catch (err) {
-//         console.log(err);
-//         alert(err);
-//     }
-// }
-
-// const handleVisibilityChange = () => {
-//     if (document.visibilityState === 'visible') {
-//       requestWakeLock();
-//     }
-//   }
-
-// document.addEventListener('visibilitychange', handleVisibilityChange);
-// document.addEventListener('click', requestWakeLock);
-
 const requestFullscreen = () => {
     if (!document.fullscreenElement) {
         document.querySelector("body").requestFullscreen();
@@ -89,3 +65,44 @@ for (let i = 0; i < 4; i++) {
 }
 
 setInterval(getScore, 250);
+
+let wakeLock = null;
+const requestWakeLock = async () => {
+    if ('wakeLock' in navigator) {
+        try {
+            wakeLock = await navigator.wakeLock.request('screen');
+            wakeLock.addEventListener('release', () => {
+                console.log('Wake Lock was released');
+                wakeLock = null;
+            });
+            console.log('Wake Lock is active');
+        } catch (err) {
+            console.error('Could not obtain wake lock:', err && err.name ? err.name : err, err && err.message ? err.message : '');
+            wakeLock = null;
+        }
+    } else {
+        console.log('Wake Lock API not supported in this browser.');
+    }
+};
+
+document.addEventListener('visibilitychange', async () => {
+    if (document.visibilityState === 'visible') {
+        if (!wakeLock) {
+            await requestWakeLock();
+        }
+    }
+});
+
+
+requestWakeLock();
+
+window.addEventListener('unload', async () => {
+    if (wakeLock) {
+        try {
+            await wakeLock.release();
+        } catch (e) {
+            // ignore
+        }
+        wakeLock = null;
+    }
+});
